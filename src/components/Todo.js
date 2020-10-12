@@ -11,7 +11,7 @@ const Todo = ({id, task, completed, removeTodo, toggleTodo, editTodo}) => {
 
     return(
         <ListItem>
-            {isEditing? (<EditTodoForm editTodo={editTodo}/>) : (
+            {isEditing? (<EditTodoForm editTodo={editTodo} id={id} task={task} toggle={toggle}/> ) : (
                 <>
                 <Checkbox onClick={()=>toggleTodo(id)} checked={completed}/>
                 <ListItemText style={{textDecoration: completed ? "line-through" : "none"}}>

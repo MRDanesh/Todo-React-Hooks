@@ -3,15 +3,30 @@ import {TextField} from '@material-ui/core';
 
 import useInputState from '../hooks/useInputState';
 
-const EditTodoForm = ({editTodo}) => {
-    const [value, handleChange, reset] = useInputState("");
+const EditTodoForm = ({editTodo, id, task, toggle}) => {
+    const [value, handleChange, reset] = useInputState(task);
+
+    const handleFormSubmit = (e) => {
+        e.preventDefault();
+        editTodo(id, value);
+        reset();
+        toggle();
+    }
+
     return(
-        <TextField 
-        margin='normal'
-        value={value}
-        onChange={handleChange}
-        fullWidth
-        />
+        <form 
+        onSubmit={handleFormSubmit}
+        style={{marginLeft: "1rem", width:"50%"}}
+        >
+            <TextField 
+            margin='normal'
+            value={value}
+            onChange={handleChange}
+            fullWidth
+            autoFocus
+            />
+        </form>
+        
     );
 };
 
